@@ -18,12 +18,12 @@ namespace BridgeMonitor.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public IActionResult Prochaine_Fermeture()
         {
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Toutes_Fermetures()
         {
             return View();
         }
