@@ -1,6 +1,77 @@
-@{
-    ViewData["Title"] = "Toutes les fermetures";
-}
-<h1>@ViewData["Title"]</h1>
 
-<p>Use this page to detail your site's privacy policy.</p>
+@model List<BridgeFermeture>
+
+<h1>Toutes les fermetures : </h1>
+
+@{List<BridgeFermeture> Pont = Model;
+    Pont.Sort((x, y) => DateTimeOffset.Compare(x.closing_date, y.closing_date));
+    List<BridgeFermeture> tab_past = new List<BridgeFermeture>();
+    List<BridgeFermeture> tab_futur = new List<BridgeFermeture>();
+}
+
+@{string Date1 = "2021-09-15T14:19:00+0200";}
+@foreach (var pont in Pont)
+{
+    int Resultat = DateTime.Compare(Convert.ToDateTime(pont.closing_date), Convert.ToDateTime(DateTime.Now.ToString()));
+    if (Resultat == 1)
+    {
+        var Date2 = Convert.ToDateTime(Date1);
+        int result = DateTime.Compare(Date2, Convert.ToDateTime(pont.closing_date));
+
+        if (result == 1)
+        {
+            tab_futur.Add(pont);
+        }
+        else
+        {
+            tab_past.Add(pont);
+        }
+    }
+}
+
+<h2>Fermetures passées : </h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Date et heure de fermeture du pont</th>
+            <th>Durée de la fermeture</th>
+            <th>Cause de la fermeture</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var pont in tab_past)
+        {
+            TimeSpan test = Convert.ToDateTime(pont.reopening_date) - Convert.ToDateTime(pont.closing_date);
+            <tr>
+                <th>@pont.closing_date</th>
+                <th>@test.Hours heures</th>
+                <th>@pont.boat_name</th>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h2>Fermetures à venir  : </h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Date et heure de fermeture du pont</th>
+            <th>Durée de la fermeture</th>
+            <th>Cause de la fermeture</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var pont in tab_futur)
+        {
+            TimeSpan test = Convert.ToDateTime(pont.reopening_date) - Convert.ToDateTime(pont.closing_date);
+            <tr>
+                <th>@pont.closing_date</th>
+                <th>@test.Hours heures</th>
+                <th>@pont.boat_name</th>
+            </tr>
+        }
+    </tbody>
+</table>
+

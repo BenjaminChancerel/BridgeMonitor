@@ -23,14 +23,15 @@ namespace BridgeMonitor.Controllers
 
         public IActionResult Prochaine_Fermeture()
         {
-            var bridge = GetBridgeFromApi();
-            return View(bridge);
+            var pont = GetBridgeFromApi();
+            return View(pont);
 
         }
 
         public IActionResult Toutes_Fermetures()
         {
-            return View();
+            var pont = GetBridgeFromApi();
+            return View(pont);
         }
 
         private static List<BridgeFermeture> GetBridgeFromApi()
