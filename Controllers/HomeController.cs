@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using BridgeMonitor.Models;
 using System.Net.Http;
 using Newtonsoft.Json;
+using System.Globalization;
 
 namespace BridgeMonitor.Controllers
 {
@@ -24,6 +25,7 @@ namespace BridgeMonitor.Controllers
         {
             var bridge = GetBridgeFromApi();
             return View(bridge);
+
         }
 
         public IActionResult Toutes_Fermetures()

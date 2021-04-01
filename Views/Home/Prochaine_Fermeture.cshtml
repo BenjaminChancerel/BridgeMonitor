@@ -2,11 +2,33 @@
     @model List<BridgeFermeture>
 }
 
-<h1>Liste des stations</h1>
+<h1>Prochaine fermeture : </h1>
 
-<ul>
-    @foreach (var bridge in Model)
+@{string Date1 = "2021-09-15T14:19:00+0200";}
+@foreach (var pont in Model)
+{
+    int Resultat = DateTime.Compare(Convert.ToDateTime(pont.closing_date), Convert.ToDateTime(DateTime.Now.ToString()));
+    if (Resultat == 1)
     {
-        <li>@bridge.closing_date</li>
+        var Date2 = Convert.ToDateTime(Date1);
+        int result = DateTime.Compare(Date2, Convert.ToDateTime(pont.closing_date));
+
+        if (result == 1)
+        {
+            Date1 = pont.closing_date.ToString();
+        }
     }
-</ul>
+}
+
+@foreach (var pont in Model)
+{
+    if (pont.closing_date.ToString() == Date1)
+    {
+        <p><b>Fermeture le :</b>@pont.closing_date @pont.closing_date.DayOfWeek</p>
+        <p><b>Rouverture du pont le :</b> @pont.reopening_date @pont.reopening_date.DayOfWeek</p>
+        <p><b>Raison de la fermeture :</b> @pont.boat_name</p>
+        TimeSpan test = Convert.ToDateTime(pont.reopening_date) - Convert.ToDateTime(pont.closing_date);
+        <p><b>Durée de la prochaine fermeture : </b>@test.TotalHours heures</p>
+
+    }
+}
