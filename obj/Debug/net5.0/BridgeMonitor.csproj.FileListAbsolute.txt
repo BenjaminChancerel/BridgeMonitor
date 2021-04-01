@@ -38,3 +38,4 @@ C:\Users\benji\Desktop\BridgeMonitor\obj\Debug\net5.0\BridgeMonitor.genruntimeco
 C:\Users\benji\Desktop\BridgeMonitor\obj\Debug\net5.0\BridgeMonitor.csproj.CopyComplete
 C:\Users\benji\Desktop\BridgeMonitor\obj\Debug\net5.0\Razor\Views\Home\Prochaine_Fermeture.cshtml.g.cs
 C:\Users\benji\Desktop\BridgeMonitor\obj\Debug\net5.0\Razor\Views\Home\Toutes_Fermetures.cshtml.g.cs
+C:\Users\benji\Desktop\BridgeMonitor\bin\Debug\net5.0\Newtonsoft.Json.dll

@@ -1,8 +1,12 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    @model List<BridgeFermeture>
 }
 
-<div class="text-center">
-    <h1 class="display-4">Prochaine Fermeture</h1>
-    <p>Encore un <a href="https://docs.microsoft.com/aspnet/core">petit effort !</a>.</p>
-</div>
+<h1>Liste des stations</h1>
+
+<ul>
+    @foreach (var bridge in Model)
+    {
+        <li>@bridge.closing_date</li>
+    }
+</ul>
